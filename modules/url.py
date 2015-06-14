@@ -469,8 +469,8 @@ def show_title_auto(jenni, input):
 
     if output_shorts:
         jenni.say((output_shorts).strip())
-show_title_auto.rule = '(?iu).*(%s?(http|https)(://\S+)).*' % (EXCLUSION_CHAR)
-show_title_auto.priority = 'high'
+#show_title_auto.rule = '(?iu).*(%s?(http|https)(://\S+)).*' % (EXCLUSION_CHAR)
+#show_title_auto.priority = 'high'
 
 
 def show_title_demand(jenni, input):
