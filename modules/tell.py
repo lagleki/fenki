@@ -74,7 +74,7 @@ def f_remind(jenni, input):
 
     # @@ Multiple comma-separated tellees? Cf. Terje, #swhack, 2006-04-15
     if input.group() and (input.group()).lower().startswith('.tell'):
-        verb = 'doi'.encode('utf-8')
+        verb = 'tell'.encode('utf-8')
         line = input.groups()
         line_txt = line[1].split()
         tellee = line_txt[0]
@@ -130,8 +130,8 @@ def f_remind(jenni, input):
     jenni.reply(response)
 
     dumpReminders(jenni.tell_filename, jenni.reminders, jenni.tell_lock) # @@ tell
-f_remind.rule = ('$nick', ['[dD]oi', '[aA]sk'], r'(\S+) (.*)')
-f_remind.commands = ['doi', 'to']
+f_remind.rule = ('$nick', ['[tT]ell', '[aA]sk'], r'(\S+) (.*)')
+f_remind.commands = ['tell', 'to']
 
 
 def getReminders(jenni, channel, key, tellee):
