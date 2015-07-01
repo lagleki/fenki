@@ -74,7 +74,7 @@ def f_remind(jenni, input):
 
     # @@ Multiple comma-separated tellees? Cf. Terje, #swhack, 2006-04-15
     if input.group() and (input.group()).lower().startswith('.tell'):
-        verb = 'doi'.encode('utf-8')
+        verb = 'cusku'.encode('utf-8')
         line = input.groups()
         line_txt = line[1].split()
         tellee = line_txt[0]
@@ -111,11 +111,11 @@ def f_remind(jenni, input):
                 jenni.tell_lock.release()
     response = str()
     if teller.lower() == tellee.lower() or tellee.lower() == 'me':
-        response = 'You can %s yourself that.' % (verb)
+        response = "e'u do %s di'u fi ba'e do si'unai' % (verb)
     elif tellee.lower() == jenni.nick.lower():
-        response = "Hey, I'm not as stupid as Monty you know!"
+        response = "oi i mi na tai bebna"
     else:
-        response = "I'll pass that on when %s is around."
+        response = "mi ba benji di'u ca lo nu la'o zoi %s zoi di'a irci"
         if len(whogets) > 1:
             listing = ', '.join(whogets[:-1]) + ', or ' + whogets[-1]
             response = response % (listing)
