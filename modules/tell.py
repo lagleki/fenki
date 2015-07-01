@@ -70,11 +70,11 @@ def f_remind(jenni, input):
 
     #if not input.group(2) or input.group(3):
     if not input.group(2):
-        return jenni.say('e\'o do smusku fi mi fe lo nu cusku ma kau ma kau')
+        return jenni.say('Please tell me who and what to tell people.')
 
     # @@ Multiple comma-separated tellees? Cf. Terje, #swhack, 2006-04-15
     if input.group() and (input.group()).lower().startswith('.tell'):
-        verb = 'tell'.encode('utf-8')
+        verb = 'doi'.encode('utf-8')
         line = input.groups()
         line_txt = line[1].split()
         tellee = line_txt[0]
@@ -96,7 +96,7 @@ def f_remind(jenni, input):
     whogets = list()
     for tellee in tellee.split(','):
         if len(tellee) > 20:
-            jenni.say('lo cmene be zoi gy.%s.gy. noi pilno cu du\'eva\'ei clani' % (tellee))
+            jenni.say('Nickname %s is too long.' % (tellee))
             continue
         if not tellee.lower() in (teller.lower(), jenni.nick):  # @@
             jenni.tell_lock.acquire()
@@ -111,11 +111,11 @@ def f_remind(jenni, input):
                 jenni.tell_lock.release()
     response = str()
     if teller.lower() == tellee.lower() or tellee.lower() == 'me':
-        response = 'e\'u do cusku di\'u fi ba\'e do si\'unai.' % (verb)
+        response = 'You can %s yourself that.' % (verb)
     elif tellee.lower() == jenni.nick.lower():
-        response = "oi mi na tai bebna"
+        response = "Hey, I'm not as stupid as Monty you know!"
     else:
-        response = "mi ba cusku di'u ba lo nu %s di'a irci"
+        response = "I'll pass that on when %s is around."
         if len(whogets) > 1:
             listing = ', '.join(whogets[:-1]) + ', or ' + whogets[-1]
             response = response % (listing)
@@ -130,8 +130,8 @@ def f_remind(jenni, input):
     jenni.reply(response)
 
     dumpReminders(jenni.tell_filename, jenni.reminders, jenni.tell_lock) # @@ tell
-f_remind.rule = ('$nick', ['[tT]ell', '[aA]sk'], r'(\S+) (.*)')
-f_remind.commands = ['tell', 'to']
+f_remind.rule = ('$nick', ['[dD]oi', '[aA]sk'], r'(\S+) (.*)')
+f_remind.commands = ['doi', 'to']
 
 
 def getReminders(jenni, channel, key, tellee):
