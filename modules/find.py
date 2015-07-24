@@ -157,7 +157,7 @@ def findandreplace(jenni, input):
     save_db(search_dict)
 
     # output
-    phrase = nick + (input.group(1) and ' thinks ' + rnick or '') + (me and ' ' or " \x02meant\x02 to say: ") + new_phrase
+    phrase = "la'oi " + nick + (input.group(1) and ' thinks ' + rnick or '') + (me and ' ' or " \x02pu djica lo ka cusku\x02 zoi zoi ") + new_phrase + " zoi"
     if me and not input.group(1): phrase = '\x02' + phrase + '\x02'
     jenni.say(phrase)
 
